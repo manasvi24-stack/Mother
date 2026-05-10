@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Mother's Day 💖</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#ffd6e8,#ffe9f3,#e9d5ff);
+min-height:100vh;
+overflow-x:hidden;
+text-align:center;
+padding:20px;
+}
+
+h1{
+font-size:60px;
+color:#d63384;
+margin-top:20px;
+}
+
+.subtitle{
+margin-top:15px;
+font-size:24px;
+color:#555;
+}
+
+/* BALLONS */
+.balloon-container{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:40px;
+margin-top:70px;
+}
+
+.balloon{
+width:120px;
+height:150px;
+background:linear-gradient(to bottom,#ff4f9a,#c9184a);
+border-radius:50%;
+color:white;
+font-size:55px;
+font-weight:bold;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+position:relative;
+animation:float 3s ease-in-out infinite;
+box-shadow:0 10px 20px rgba(0,0,0,0.2);
+}
+
+.balloon::after{
+content:'';
+position:absolute;
+width:2px;
+height:60px;
+background:#555;
+bottom:-60px;
+}
+
+@keyframes float{
+0%,100%{transform:translateY(0);}
+50%{transform:translateY(-15px);}
+}
+
+.emoji{
+font-size:70px;
+animation:pop 0.6s ease;
+}
+
+@keyframes pop{
+from{transform:scale(0);opacity:0;}
+to{transform:scale(1);opacity:1;}
+}
+
+/* CAKE SECTION */
+.cake-section{
+display:none;
+margin-top:40px;
+animation:fadeIn 1s ease;
+}
+
+@keyframes fadeIn{
+from{opacity:0;transform:translateY(20px);}
+to{opacity:1;transform:translateY(0);}
+}
+
+.cake-title{
+font-size:50px;
+color:#d63384;
+margin-bottom:20px;
+}
+
+/* CANDLES */
+.cake-wrapper{
+margin-top:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.candles{
+display:flex;
+gap:12px;
+margin-bottom:10px;
+}
+
+.candle{
+font-size:30px;
+animation:float 1.5s infinite;
+}
+
+.flame{
+font-size:50px;
+cursor:pointer;
+animation:float 1s infinite;
+margin-bottom:10px;
+}
+
+.blow-text{
+margin-top:10px;
+color:#555;
+font-size:18px;
+}
+
+/* CAKE DESIGN */
+.cake{
+width:340px;
+position:relative;
+margin-top:10px;
+}
+
+.cake-layer{
+height:50px;
+margin:auto;
+border-radius:20px;
+}
+
+.top{
+width:80%;
+background:#ffb3c6;
+}
+
+.middle{
+width:90%;
+background:#ff8fab;
+}
+
+.bottom{
+width:100%;
+background:#ff4f9a;
+height:70px;
+border-radius:0 0 25px 25px;
+}
+
+.cake-text{
+position:absolute;
+width:100%;
+top:70px;
+text-align:center;
+font-size:40px;
+font-weight:bold;
+color:white;
+}
+
+/* BUTTONS */
+.letter-btn{
+margin-top:40px;
+padding:18px 35px;
+border:none;
+border-radius:20px;
+background:linear-gradient(to right,#ff4f9a,#d63384);
+color:white;
+font-size:24px;
+cursor:pointer;
+box-shadow:0 8px 20px rgba(0,0,0,0.2);
+margin-right:10px;
+}
+
+/* LETTER */
+.letter{
+display:none;
+max-width:800px;
+margin:50px auto;
+background:rgba(255,255,255,0.85);
+padding:40px;
+border-radius:30px;
+border:5px solid #ffb3c6;
+}
+
+.letter h2{
+color:#d63384;
+font-size:45px;
+margin-bottom:20px;
+}
+
+.letter p{
+font-size:24px;
+line-height:1.8;
+color:#555;
+}
+
+.emoji-line{
+margin-top:25px;
+font-size:45px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="balloonPage">
+
+<h1>💖 Happy Mother's Day 💖</h1>
+<p class="subtitle">Pop all the balloons for a surprise 🎈</p>
+
+<div class="balloon-container" id="balloons"></div>
+
+</div>
+
+<!-- CAKE SECTION -->
+<div class="cake-section" id="cakeSection">
+
+<h2 class="cake-title">🎂 Time To Cut The Cake 🎂</h2>
+
+<div class="cake-wrapper">
+
+  <div class="candles">
+    <div class="candle">🕯️</div>
+    <div class="candle">🕯️</div>
+    <div class="candle">🕯️</div>
+    <div class="candle">🕯️</div>
+    <div class="candle">🕯️</div>
+  </div>
+
+  <div class="flame" id="flame">🔥</div>
+
+  <p class="blow-text">
+    Click the flame to blow all candles 💨
+  </p>
+
+  <div class="cake">
+    <div class="cake-layer top"></div>
+    <div class="cake-layer middle"></div>
+    <div class="cake-layer bottom"></div>
+
+    <div class="cake-text">MOM ❤️</div>
+  </div>
+
+</div>
+
+<button class="letter-btn" id="scratchBtn" style="display:none;">
+🎁 Scratch Surprise Card
+</button>
+
+<button class="letter-btn" id="letterBtn" style="display:none;">
+💌 Open Special Letter
+</button>
+
+<!-- SCRATCH CARD -->
+<div class="letter" id="scratchCard">
+
+<h2>Scratch & Reveal Surprise ✨</h2>
+
+<p>Mumma, you are the most beautiful gift in my life 💖</p>
+
+<div style="position:relative; max-width:350px; margin:auto;">
+<img src="mumma.jpeg" style="width:100%; border-radius:25px;">
+
+<canvas id="scratchCanvas"
+width="350"
+height="450"
+style="position:absolute; left:0; top:0; border-radius:25px;">
+</canvas>
+</div>
+
+</div>
+
+<!-- LETTER -->
+<div class="letter" id="letter">
+
+<h2>Dear Mumma 💖</h2>
+
+<p>
+Thank you for always loving me, supporting me, protecting me 🌸
+<br><br>
+You are my strength and my happiness 🫶
+<br><br>
+Happy Mother's Day 💐💖
+</p>
+
+</div>
+
+</div>
+
+<script>
+
+const letters=[
+{letter:'M',emoji:'💖'},
+{letter:'O',emoji:'🌸'},
+{letter:'T',emoji:'🥰'},
+{letter:'H',emoji:'✨'},
+{letter:'E',emoji:'💐'},
+{letter:'R',emoji:'🫶'}
+];
+
+const balloonsDiv=document.getElementById("balloons");
+let popped=0;
+
+letters.forEach(item=>{
+const balloon=document.createElement("div");
+balloon.className="balloon";
+balloon.innerHTML=item.letter;
+
+balloon.onclick=()=>{
+balloon.outerHTML=`<div class="emoji">${item.emoji}</div>`;
+popped++;
+
+if(popped===letters.length){
+setTimeout(()=>{
+document.getElementById("balloonPage").style.display="none";
+document.getElementById("cakeSection").style.display="block";
+},1200);
+}
+};
+
+balloonsDiv.appendChild(balloon);
+});
+
+const flame=document.getElementById("flame");
+const scratchBtn=document.getElementById("scratchBtn");
+const letterBtn=document.getElementById("letterBtn");
+
+flame.onclick=()=>{
+flame.innerHTML="💨";
+document.querySelector(".blow-text").innerHTML="Candle blown 🎉";
+scratchBtn.style.display="inline-block";
+letterBtn.style.display="inline-block";
+};
+
+scratchBtn.onclick=()=>{
+document.getElementById("scratchCard").style.display="block";
+
+const canvas=document.getElementById("scratchCanvas");
+const ctx=canvas.getContext("2d");
+
+ctx.fillStyle="#ff69b4";
+ctx.fillRect(0,0,canvas.width,canvas.height);
+
+ctx.fillStyle="white";
+ctx.font="30px Arial";
+ctx.fillText("Scratch Here 💖",70,220);
+
+let scratching=false;
+
+function scratch(e){
+if(!scratching) return;
+const rect=canvas.getBoundingClientRect();
+const x=(e.clientX||e.touches[0].clientX)-rect.left;
+const y=(e.clientY||e.touches[0].clientY)-rect.top;
+
+ctx.globalCompositeOperation="destination-out";
+ctx.beginPath();
+ctx.arc(x,y,25,0,Math.PI*2);
+ctx.fill();
+}
+
+canvas.addEventListener("mousedown",()=>scratching=true);
+canvas.addEventListener("mouseup",()=>scratching=false);
+canvas.addEventListener("mousemove",scratch);
+
+canvas.addEventListener("touchstart",()=>scratching=true);
+canvas.addEventListener("touchend",()=>scratching=false);
+canvas.addEventListener("touchmove",scratch);
+
+scratchBtn.style.display="none";
+};
+
+letterBtn.onclick=()=>{
+document.getElementById("letter").style.display="block";
+letterBtn.style.display="none";
+};
+
+</script>
+
+</body>
+</html>
